@@ -1,118 +1,87 @@
 //
-// Created by MyPC on 2019/5/26.
+// Created by MyPC on 2019/6/19.
 //
 
 #include "List.h"
+#include <iostream>
+using namespace std;
 
 List::List() {
-    init();
+    head = new Node(0, NULL);
+    theSize = 0;
+}
+
+List::List(const List &rhs) {
+
 }
 
 List::~List() {
     clear();
     delete head;
-    delete tail;
-}
-
-List::List(const List &rhs) {
-    init();
-    *this = rhs;
-}
-
-const List & List::operator=(const List &rhs) {
-    if (this == &rhs) {
-        return *this;
-    }
-    clear();
-    for (const_iterator itr = rhs.begin(); itr != rhs.end(); ++itr) {
-        push_back(*itr);
-    }
-    return *this;
-}
-
-//构成一个回环
-void List::init() {
-    theSize = 0;
-    head = new Node(0, NULL, NULL);
-    tail = new Node(0, NULL, NULL);
-    head->next = tail;
-    tail->prev = head;
-}
-
-/**
- * 插入
- * @param it
- * @param x
- * @return
- */
-List::iterator List::insert(List::iterator it, const int &x) {
-    Node *p = it
-}
-
-List::iterator List::begin() {
-    return iterator(head->next);
-}
-
-List::const_iterator List::begin() const {
-    return const_iterator(head->next);
-}
-
-List::iterator List::end() {
-    return iterator(tail);
-}
-
-List::const_iterator List::end() const {
-    return const_iterator(tail);
-}
-
-int List::size() const {
-    return theSize;
-}
-
-bool List::empty() const {
-    return size() == 0;
 }
 
 void List::clear() {
-    while (!empty()) {
-        pop_front();
+
+}
+
+/**
+ * 插入节点
+ * @param x
+ */
+void List::insert(int x) {
+    Node *p = head;
+    Node *q = new Node(x, NULL);
+    for (int i = 0 ; i < theSize ; i ++) {
+        p = p->next;
+    }
+     q->next = p->next;
+    p->next = q;
+    theSize++;
+}
+
+/**
+ * 删除某个节点
+ * @param x
+ */
+bool List::earse(int x) {
+    Node *p = head;
+    Node *q = p->next;
+    bool flag;
+    while (q != NULL) {
+        if (q->data == x) {
+            flag = true;
+            break;
+        }
+        p = q;
+        q = q->next;
+    }
+    //找到节点
+    if (flag) {
+        p->next = q->next;
+        q->next = NULL;
+        delete q;
+    }
+    return flag;
+}
+
+//倒序
+void List::reverse() {
+
+}
+
+void List::printList() {
+    Node *p = head;
+    while (p != NULL) {
+        cout<< p->data << endl;
+        p = p->next;
     }
 }
 
-int & List::front() {
-    return *begin();
+int main() {
+    List *list = new List();
+    list->insert(1);
+    list->insert(2);
+    list->insert(3);
+    list->earse(3);
+    list->printList();
 }
-
-const int & List::front() const {
-    return *end();
-}
-
-int & List::back() {
-    return *end();
-}
-
-const int & List::back() const {
-    return *begin();
-}
-
-void List::push_front(const int &x) {
-    insert(begin(), x);
-}
-
-void List::push_back(const int &x) {
-    insert(end(), x);
-}
-
-void List::pop_front() {
-    erase(begin());
-}
-
-void List::pop_back() {
-    erase(end());
-}
-
-
-
-
-
-

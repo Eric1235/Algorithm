@@ -143,12 +143,12 @@ BinarySearchTree::BinaryNode *BinarySearchTree::clone(BinarySearchTree::BinaryNo
 }
 
 
-int main() {
-    BinarySearchTree *tree = new BinarySearchTree();
-    tree->insert(1);
-    tree->insert(3);
-    bool b = tree->contains(3);
-    int a = tree->findMax();
-    cout<< b << a <<endl;
-    tree->printTree();
-}
+//int main() {
+//    BinarySearchTree *tree = new BinarySearchTree();
+//    tree->insert(1);
+//    tree->insert(3);
+//    bool b = tree->contains(3);
+//    int a = tree->findMax();
+//    cout<< b << a <<endl;
+//    tree->printTree();
+//}
