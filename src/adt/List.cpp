@@ -66,7 +66,18 @@ bool List::earse(int x) {
 
 //倒序
 void List::reverse() {
-
+    Node * p = head;
+    Node * q = head->next;
+    Node * r;
+    while (q != NULL) {
+        r = q->next;
+        q->next = p;
+        p = q;
+        q= r;
+    }
+    //这一步很关键，不写这个就会成环
+    head->next = NULL;
+    head = p;
 }
 
 void List::printList() {
@@ -77,11 +88,11 @@ void List::printList() {
     }
 }
 
-int main() {
-    List *list = new List();
-    list->insert(1);
-    list->insert(2);
-    list->insert(3);
-    list->earse(3);
-    list->printList();
-}
+//int main() {
+//    List *list = new List();
+//    list->insert(1);
+//    list->insert(2);
+//    list->insert(3);
+//    list->reverse();
+//    list->printList();
+//}
