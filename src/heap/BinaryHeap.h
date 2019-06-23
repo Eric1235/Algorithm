@@ -25,8 +25,8 @@ private:
     int size;
     std::vector<int> array;
     void buildHeap();
-    void shiftDown(int hole);
-    void shiftUp(int hole);
+    void siftDown(int hole);
+    void siftUp(int hole);
 };
 
 #endif //ALGORITHM_BINARYHEAP_H
