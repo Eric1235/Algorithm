@@ -80,6 +80,17 @@ void List::reverse() {
     head = p;
 }
 
+Node* List::reverse(Node *node) {
+    Node *newNode;
+    if (node == NULL || node->next == NULL) {
+        return node;
+    }
+    newNode = reverse(node->next);
+    node->next->next = head;
+    head->next = NULL;
+    return newNode;
+}
+
 void List::printList() {
     Node *p = head;
     while (p != NULL) {

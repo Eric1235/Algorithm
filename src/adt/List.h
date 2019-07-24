@@ -26,6 +26,8 @@ public:
 
     void reverse();
 
+    Node* reverse(Node *node);
+
     void printList();
 };
 
